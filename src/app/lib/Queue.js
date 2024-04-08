@@ -49,6 +49,7 @@ export default {
 
         console.log('Adding job to queue:', { jobType: type, data });
         queue.bull.add(data, job.options);
+        console.log(`Job of type ${type} added to queue ${job.queue}`);
     },
     process() {
         allJobs.forEach(job => {
@@ -57,8 +58,13 @@ export default {
                 console.error('Queue not found for job:', job);
                 return;
             }
-            console.log('Processing job:', job);
+
+            console.log(`Starting the processing of job type ${job.type} in queue ${job.queue}`);
             queue.bull.process(job.handle);
+
+            queue.bull.on('completed', (job, result) => {
+                console.log(`Job ${job.id} in queue ${job.queue.name} has completed with result: ${result}`);
+            });
 
             queue.bull.on('failed', (job, err) => {
                 console.error('Job failed', job.queue, job.data);
