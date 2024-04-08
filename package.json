@@ -1,0 +1,25 @@
+{
+  "name": "jobs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \\\"Nenhum teste especificado\\\" && exit 1",
+    "start": "nodemon src/server.js",
+    "queue": "nodemon src/queue.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bull": "^4.12.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13",
+    "password-generator": "^2.3.2",
+    "redis": "^4.6.13"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "sucrase": "^3.35.0"
+  }
+}
